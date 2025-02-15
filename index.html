@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dental3 - Web3 Dental Care</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="manifest" href="manifest.json">
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/service-worker.js')
+            .then(reg => console.log('Service Worker registered:', reg))
+            .catch(err => console.log('Service Worker registration failed:', err));
+        }
+        
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (event) => {
+            event.preventDefault();
+            deferredPrompt = event;
+            document.getElementById('installButton').style.display = 'block';
+        });
+        
+        function installPWA() {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
+                        console.log('User accepted the PWA install');
+                    } else {
+                        console.log('User dismissed the PWA install');
+                    }
+                    deferredPrompt = null;
+                });
+            }
+        }
+        
+        window.addEventListener('appinstalled', () => {
+            console.log('PWA installed successfully');
+        });
+    </script>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background-color: #ffebf0;
+        }
+        header {
+            background-color: #ff99cc;
+            color: white;
+            padding: 20px;
+            font-size: 24px;
+            border-bottom: 5px solid #ff6699;
+        }
+        section {
+            padding: 20px;
+            margin: 20px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(255, 105, 180, 0.5);
+            max-width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .doctor {
+            margin-top: 20px;
+        }
+        .doctor img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 3px solid #ff6699;
+        }
+        footer {
+            background-color: #ff99cc;
+            color: white;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        #installButton {
+            display: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #ff6699;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Dental3 🦷✨</h1>
+    </header>
+    
+    <button id="installButton" onclick="installPWA()">📲 Install Dental3</button>
+    
+    <section class="doctor">
+        <h2>Meet Dr. Yuki</h2>
+        <img src="https://bafkreibvspztwafmludji4osh27jui75kzzeiebwnidwptdq5yzukuyi3u.ipfs.flk-ipfs.xyz" alt="Dr. Yuki">
+    </section>
+    
+    <section id="slideshow">
+        <h2>🦷 What is this clinic? 🦷</h2>
+        <p>A cutting-edge dental clinic integrating Web3 technology.</p>
+    </section>
+    
+    <section id="booking">
+        <h2>📅 Book a Clinic Appointment 📅</h2>
+        <p>Reserve your spot via crypto wallet.</p>
+        <button>💳 Connect Wallet</button>
+    </section>
+    
+    <section id="vip-nft">
+        <h2>🎟 VIP NFT 🎟</h2>
+        <p>Mint your exclusive Dental3 NFT here.</p>
+        <button>🖼 Mint Now</button>
+    </section>
+    
+    <section id="user-voices">
+        <h2>💬 Users' Voices 💬</h2>
+        <blockquote>
+            <p>格闘家をしている中でどうして噛むことの大切さを感じます。噛み合わせを直してもらいとても力が入るようになりました。</p>
+            <cite>- 🥋 総合格闘家　ABC</cite>
+        </blockquote>
+        <blockquote>
+            <p>人前に出る仕事なので、きれいな歯の手入れは書かせません。歯列をこんなにきれいに直してもらえるとは思っていませんでした！</p>
+            <cite>- 🎧 DJ ABC</cite>
+        </blockquote>
+    </section>
+    
+    <section id="contact">
+        <h2>📞 Contact 📞</h2>
+        <p>03-xxxx-xxxx</p>
+    </section>
+    
+    <footer>
+        <p>&copy; 2025 Dental3. All rights reserved. 🦷💕</p>
+    </footer>
+</body>
+</html>
