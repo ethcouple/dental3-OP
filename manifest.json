@@ -2,7 +2,7 @@
     "name": "Dental3",
     "short_name": "Dental3",
     "description": "Next-gen dental care for the Web3 community",
-    "start_url": "/index.html",
+    "start_url": "./index.html",
     "display": "standalone",
     "background_color": "#ffebf0",
     "theme_color": "#ff99cc",
